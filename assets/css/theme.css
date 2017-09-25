@@ -1,0 +1,41 @@
+.divbrix{
+    border: 1px dashed red !important;
+}
+.app-margin-8px{
+    padding: 8px;
+}
+
+.app-margin-16px{
+    padding: 16px;
+}
+
+.toolbardemoBasicUsage md-toolbar md-icon.md-default-theme {
+    color: white;
+}
+.menuLabel{
+    font-weight: bold !important;
+}
+.contentMain{
+    height: 100vh;
+}
+
+.disable-md-clickable .md-ripple-container {
+    display: none;
+}
+
+.header-table {
+    background-color: #EEEEEE;
+    font-weight: bold;
+    color: #424242;
+}
+
+.line_gray {
+    background-color: #F5F5F5;
+}
+
+.line_white {
+    background-color: white;
+}
+.md-datepicker-input{
+    width: 150px !important;
+}

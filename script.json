@@ -1,0 +1,8 @@
+[
+    "./app/**/*module.js",
+    "./app/**/*config.js",
+    "./app/**/*route.js",
+    "./app/**/*filter.js",    
+    "./app/**/*service.js",
+    "./app/**/*ctrl.js"    
+]
