@@ -1,4 +1,5 @@
 [
+    "./node_modules/firebase/firebase.js",
     "./node_modules/lodash/lodash.js",
     "./node_modules/angular/angular.js",
     "./node_modules/angular-animate/angular-animate.js",

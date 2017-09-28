@@ -8,6 +8,7 @@ angular.module('SaveDraftApp')
         this.estado = [{ value: 'MG', description: 'Minas Gerais' }, { value: 'SP', description: 'São Paulo' }, { value: 'RJ', description: 'Rio de Janeiro' }];
         this.cidade = [{ value: 'BH', description: 'Belo Horizonte' }, { value: 'CVO', description: 'Curvelo' }, { value: 'ITBA', description: 'Inimutaba' }]
         $scope.saving = 1; //0-progress 1-saved 2-pendente 
+        $scope.users;
 
         UserBean = function () {
             var name;
@@ -18,10 +19,6 @@ angular.module('SaveDraftApp')
             var cidadeNatal;
             var endereco;
             var dataNascimento;
-        }
-
-        $scope.init = function () {
-            $scope.user = new UserBean();
         }
 
         $scope.$watch('user', function (newVal, oldVal) {
@@ -46,32 +43,54 @@ angular.module('SaveDraftApp')
 
         $scope.saveDraft = function () {
             $scope.saving = 0;
-            $timeout(function () {
-                $scope.saving = 1;
-                console.log($scope.user);
-            }, 750);
+
+            $scope.users = [];
+
+            if (!$scope.newPostKey) {
+                $scope.newPostKey = firebase
+                    .database().ref()
+                    .child('submission')
+                    .push().key;
+            }
+
+            firebase.database()
+                .ref('submission/' + $scope.newPostKey)
+                .set($scope.user);
+
+
+            $scope.saving = 1;
 
         }
 
-        $scope.isProcessing = function () {
-            return $scope.saving == 0;
-        }
+        $scope.retrieve = function () {
+            $scope.users = [];
+            firebase.database().ref('submission')
+                    .orderByKey()
+                    .on('value', function (snapshot) {
 
-        $scope.isSaved = function () {
-            return $scope.saving == 1;
-        }
+                snapshot.forEach(function (childSnapshot) {
+                    var childKey = childSnapshot.key;
+                    var childData = childSnapshot.val();
+                    $scope.users.push({key: childKey, value: childData});
+                });
 
-        $scope.isNotSaved = function () {
-            return $scope.saving == 2;
+                $scope.users = $scope.users.reverse();
+                $scope.$apply();
+            });
         }
 
         $scope.reset = function () {
             $scope.userForm.$setPristine();
             $scope.userForm.$setUntouched();
+            $scope.newPostKey = undefined;
             $scope.user = new UserBean();
-            console.log('Reset ...')
         }
 
-        $scope.init()
+        $scope.init = function () {
+            $scope.user = new UserBean();
+            $scope.users = [];
+            $scope.retrieve();
+        }
 
+        $scope.init();
     });

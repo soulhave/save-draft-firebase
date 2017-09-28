@@ -1,78 +1,102 @@
-<div layout="start top">
-    <md-card flex>
-        <form name="userForm" id="userForm">
-            <md-card-header layout-align="start center" md-colors="::{backgroundColor: 'default-accent-900-0.80'}">
-                <md-card-header-text>
-                    <span class="md-title">Formulario de Test</span>
-                    <span class="md-subhead">Test save draft using firebase</span>
-                </md-card-header-text>
-                <md-progress-circular ng-show="saving == 0" md-diameter="20" md-mode="indeterminate"></md-progress-circular>
-                <img ng-show="saving == 1" src="images/mark_ok.png" width="28" height="28" />
-                <img ng-show="saving == 2" src="images/warning_amber_384x384.png" width="28" height="28" />
-            </md-card-header>
-            <md-divider></md-divider>
-            <md-card-content class="md-padding">
-                <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between start">
-                    <md-input-container class="md-block" flex="50" style="padding-right: 16px;">
-                        <label>Name</label>
-                        <input md-maxlength="30" required name="name" ng-model="user.name" />
-                    </md-input-container>
-                    <md-input-container class="md-block" flex layout-align="space-around center">
-                        <md-radio-group ng-model="user.sexo" layout="row" layout-align="space-around center">
-                            <md-radio-button ng-repeat="s in ctrl.sexo" value="{{s.value}}" style="color: rgba(0,0,0,0.54)">
-                                {{s.description}}
-                            </md-radio-button>
-                        </md-radio-group>
-                    </md-input-container>
-                    <md-input-container flex layout="row" layout-align="space-around start">
-                        <md-datepicker flex ng-model="user.dataNascimento" md-placeholder="Data de Nascimento" md-open-on-focus md-current-view="year"></md-datepicker>
-                    </md-input-container>
-                    <md-input-container flex>
-                        <label>Escolaridade</label>
-                        <md-select ng-model="user.escolaridade">
-                            <md-option><em>None</em></md-option>
-                            <md-option ng-repeat="s in ctrl.escolaridade" value="{{s.value}}">
-                                {{s.description}}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
-                <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between start">
-                    <md-input-container class="md-block" flex="50">
-                        <label>Endereço</label>
-                        <input md-maxlength="250" required name="endereco" ng-model="user.endereco" />
-                    </md-input-container>
-                    <md-input-container flex="10">
-                        <label>Estado</label>
-                        <md-select ng-model="user.estado">
-                            <md-option><em>None</em></md-option>
-                            <md-option ng-repeat="s in ctrl.estado" value="{{s.value}}">
-                                {{s.description}}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-                    <md-input-container flex="40">
-                        <label>Cidade</label>
-                        <md-select ng-model="user.cidade">
-                            <md-option><em>None</em></md-option>
-                            <md-option ng-repeat="s in ctrl.cidade" value="{{s.value}}">
-                                {{s.description}}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
-                <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between start">
-                    <md-autocomplete flex md-selected-item="user.cidadeNatal" md-search-text="searchText" md-items="item in ctrl.citiesList(searchText)"
-                        md-item-text="item" md-floating-label="Cidade natal">
-                        <span md-highlight-text="searchText">{{item}}</span>
-                    </md-autocomplete>
-                </div>
+<div layout="start top" flex>
+    <form name="userForm" id="userForm" flex>
+        <div layout="row" layout-align="space-around start" flex>
+            <div flex=70>
+                <md-card md-whiteframe="5">
+                    <md-card-header layout-align="start center" md-colors="::{backgroundColor: 'default-accent-900-0.80'}">
+                        <md-card-header-text>
+                            <span class="md-title">Formulario de Test</span>
+                            <span class="md-subhead">Test save draft using firebase</span>
+                        </md-card-header-text>
+                        <md-progress-circular ng-show="saving == 0" md-diameter="20" md-mode="indeterminate"></md-progress-circular>
+                        <img ng-show="saving == 1" src="images/mark_ok.png" class="image-size" />
+                        <img ng-show="saving == 2" src="images/warning_amber_384x384.png" class="image-size" />
+                    </md-card-header>
+                    <md-divider></md-divider>
+                    <md-card-content class="md-padding">
+                        <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between start">
+                            <md-input-container class="md-block" flex="50" style="padding-right: 16px;">
+                                <label>Name</label>
+                                <input md-maxlength="30" required name="name" ng-model="user.name" />
+                            </md-input-container>
+                            <md-input-container class="md-block" flex layout-align="space-around center">
+                                <md-radio-group ng-model="user.sexo" layout="row" layout-align="space-around center">
+                                    <md-radio-button ng-repeat="s in ctrl.sexo" value="{{s.value}}" style="color: rgba(0,0,0,0.54)">
+                                        {{s.description}}
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </md-input-container>
+                            <md-input-container flex>
+                                <label>Escolaridade</label>
+                                <md-select ng-model="user.escolaridade">
+                                    <md-option><em>None</em></md-option>
+                                    <md-option ng-repeat="s in ctrl.escolaridade" value="{{s.value}}">
+                                        {{s.description}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between start">
+                            <md-input-container flex layout="row" layout-align="space-around start">
+                                <md-datepicker flex ng-model="user.dataNascimento" md-placeholder="Nascimento" md-open-on-focus md-current-view="year"></md-datepicker>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex="50">
+                                <label>Endereço</label>
+                                <input md-maxlength="250" required name="endereco" ng-model="user.endereco" />
+                            </md-input-container>
+                            <md-input-container flex="10">
+                                <label>Estado</label>
+                                <md-select ng-model="user.estado">
+                                    <md-option><em>None</em></md-option>
+                                    <md-option ng-repeat="s in ctrl.estado" value="{{s.value}}">
+                                        {{s.description}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container flex="20">
+                                <label>Cidade</label>
+                                <md-select ng-model="user.cidade">
+                                    <md-option><em>None</em></md-option>
+                                    <md-option ng-repeat="s in ctrl.cidade" value="{{s.value}}">
+                                        {{s.description}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between start">
+                            <md-autocomplete flex md-selected-item="user.cidadeNatal" md-search-text="searchText" md-items="item in ctrl.citiesList(searchText)"
+                                md-item-text="item" md-floating-label="Cidade natal">
+                                <span md-highlight-text="searchText">{{item}}</span>
+                            </md-autocomplete>
+                        </div>
+                    </md-card-content>
+                    <md-card-actions class="md-padding" layout="row" layout-align="start center">
+                        <md-button ng-click="reset()" class="md-accent md-raised md-hue-1">Reset</md-button>
+                    </md-card-actions>
+                </md-card>
                 {{user}}
-                {{saving}}
-            </md-card-content>
-            <md-card-actions class="md-padding" layout="row" layout-align="start center">
-                <md-button ng-click="reset()" class="md-accent md-raised md-hue-1">Reset</md-button>
-            </md-card-actions>
-        </form>
-    </md-card>
+            </div>
+            <div flex=30 layout-align="top">
+                <md-card md-whiteframe="5">
+                    <md-card-header layout-align="start center" md-colors="::{backgroundColor: 'default-accent-900-0.80'}">
+                        <md-card-header-text>
+                            <span class="md-title">Drafts</span>
+                            <span class="md-subhead">List of drafts in the firebase</span>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <md-card-content class="padding-zero">
+                        <md-list flex class="size-list-panel padding-zero" style="overflow-y: scroll">
+                            <md-list-item class="md-2-line" ng-repeat="item in users" ng-click="null">
+                                <div class="md-list-item-text" layout="column">
+                                    <h3>{{item.key}}</h3>
+                                    <h4>{{ item.value.name }}</h4>
+                                    <md-divider></md-divider>
+                                </div>
+                            </md-list-item>
+                        </md-list>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </form>
 </div>

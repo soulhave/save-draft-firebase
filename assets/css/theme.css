@@ -5,8 +5,15 @@
     padding: 8px;
 }
 
-.app-margin-16px{
+.app-margin-16px {
     padding: 16px;
+}
+
+.padding-zero {
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
 }
 
 .toolbardemoBasicUsage md-toolbar md-icon.md-default-theme {
@@ -36,6 +43,12 @@
 .line_white {
     background-color: white;
 }
-.md-datepicker-input{
-    width: 150px !important;
+
+.image-size {
+    width: 28px;
+    height: 28px;
+}
+
+.size-list-panel {
+    height: 30vw;
 }

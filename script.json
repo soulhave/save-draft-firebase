@@ -1,4 +1,5 @@
 [
+    "./app/firebase.js",
     "./app/**/*module.js",
     "./app/**/*config.js",
     "./app/**/*route.js",
